@@ -27,14 +27,25 @@ android {
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        versionName = flutter.versionName 
+        // 👇 اختار dev كـ default flavor لو ما اتحددتش
+        missingDimensionStrategy("env", "dev")
     }
 
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+      getByName("debug") {}
+      getByName("release") {}
+    }
+    
+    flavorDimensions += "env"
+    productFlavors {
+        create("dev") {
+            dimension = "env"
+            applicationIdSuffix = ".dev"
+        }
+        create("prod") {
+            dimension = "env"
+            applicationIdSuffix = ".prod"
         }
     }
 }
