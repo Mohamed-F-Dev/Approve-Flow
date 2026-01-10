@@ -1,6 +1,6 @@
-class FirebaseAuthException {
+class TfirebaseAuthException implements Exception {
   final String code;
-  const FirebaseAuthException(this.code);
+  const TfirebaseAuthException(this.code);
 
   String get message {
     switch (code) {
